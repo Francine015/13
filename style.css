@@ -215,55 +215,62 @@ button.soft {
     margin-top: 18px;
 }
 
-/* Photo Gallery */
+
+/* ==============================
+   PHOTO GALLERY
+============================== */
+
 .grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 13px;
+    width: 100%;
 }
 
 .photo {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-width: 0;
     aspect-ratio: 4 / 5;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+
     background: linear-gradient(145deg, #f2e5e1, #f8f2ec);
     border: 1px dashed #d9bdbb;
     border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 12px;
-    overflow: hidden;
-    position: relative;
-    color: var(--muted);
-    font-size: 0.85rem;
-    min-width: 0;
 }
 
 .photo img {
     position: absolute;
     inset: 0;
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
+    object-position: center;
 }
 
-.photo img:not([src]) {
+.photo img:not([src]),
+.photo img[src=""] {
     display: none;
 }
 
 .photo .caption {
     position: absolute;
+    z-index: 1;
     left: 8px;
     right: 8px;
     bottom: 8px;
     padding: 6px 8px;
+
     background: #fffdfbe8;
     border-radius: 9px;
     color: var(--deep);
     font-size: 0.8rem;
     text-align: center;
+    overflow-wrap: anywhere;
 }
 
 .photo .placeholder,
@@ -271,19 +278,27 @@ button.soft {
     display: none;
 }
 
-.photo .placeholder {
-    font-size: 1.7rem;
-}
+/* ==============================
+   MOBILE GALLERY
+============================== */
 
-.photo small {
-    font: 0.7rem Arial, sans-serif;
-    margin-top: 8px;
-}
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
 
-input[type="file"] {
-    max-width: 100%;
-    font: 0.8rem Arial, sans-serif;
-    color: var(--muted);
+    .photo {
+        margin: 0;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+    }
+
+    .photo:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        width: calc((100% - 12px) / 2);
+        justify-self: center;
+    }
 }
 
 /* Surprise Buttons */
