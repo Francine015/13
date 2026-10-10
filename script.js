@@ -1,4 +1,3 @@
-<script>
 const openBtn=document.getElementById('openLetter');
 const letter=document.getElementById('letter');
 const envelope=document.getElementById('envelope');
@@ -34,7 +33,7 @@ function moveChaseButton(){
   chaseButton.style.position='relative';
   chaseButton.style.left=Math.round(Math.random()*maxX-maxX/2)+'px';
   chaseButton.style.top=Math.round(Math.random()*maxY-maxY/2)+'px';
-  chaseButton.textContent=chaseCount===1?'Hehe, catch me! ♡':chaseCount===2?'Almost, love! 🥹':chaseCount===3?'One more try! 💗':'Okay, last chance!';
+  chaseButton.textContent=chaseCount===1?'Hehe, catch me! ♡':chaseCount===2?'Almost, love! 🥹':chaseCount===3?'One more try!':'Okay, last chance!';
 }
 chaseButton.addEventListener('pointerenter',(event)=>{
   if(event.pointerType==='mouse' && chaseButton.dataset.ready!=='yes') moveChaseButton();
@@ -48,4 +47,3 @@ chaseButton.addEventListener('click',(event)=>{
 });
 
 const welcomeScreen=document.getElementById('welcomeScreen');document.body.classList.add('locked');document.getElementById('enterSite').addEventListener('click',()=>{welcomeScreen.classList.add('dismissed');document.body.classList.remove('locked');window.setTimeout(()=>welcomeScreen.remove(),750);});
-</script>
