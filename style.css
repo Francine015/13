@@ -423,16 +423,16 @@ body.locked {
     }
 }
 
-/* Mobile Responsive Design */
-@media (max-width: 600px) {
-    .grid,
-    .surprises {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
 
+/* ==============================
+   MOBILE RESPONSIVE DESIGN
+============================== */
+
+@media (max-width: 600px) {
     .grid {
-        align-items: stretch;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
+        align-items: stretch;
     }
 
     .photo {
@@ -448,9 +448,15 @@ body.locked {
         object-fit: cover;
     }
 
-    .photo:last-child {
-        grid-column: auto;
-        aspect-ratio: 4 / 5;
+    /* Center the last photo when the total is odd */
+    .photo:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        width: calc((100% - 12px) / 2);
+        justify-self: center;
+    }
+
+    .surprises {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .hero {
